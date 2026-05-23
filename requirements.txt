@@ -1,0 +1,10 @@
+streamlit==1.32.0
+feedparser==6.0.11
+beautifulsoup4==4.12.3
+numpy==1.26.4
+pandas==2.2.1
+pydantic==2.6.3
+openai==1.13.3
+sentence-transformers==2.5.1
+scikit-learn==1.4.1.post1
+tenacity==8.2.3
