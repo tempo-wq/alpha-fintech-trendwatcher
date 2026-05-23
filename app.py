@@ -37,7 +37,7 @@ if st.session_state.get('run_pipeline', False):
         st.stop()
         
     with st.spinner('Инициализация сбора данных по каналам RSS...'):
-        raw_articles = fetch_rss_news(RSS_SOURCES, max_articles_per_feed=5)
+        raw_articles = fetch_rss_news(RSS_SOURCES, max_articles_per_feed=8)
     st.info(f"Общий объем сырых публикаций: {len(raw_articles)}")
     
     with st.spinner('Выполнение семантической дедупликации текстовых векторов...'):
