@@ -21,7 +21,7 @@
 - **Валидация данных:** Pydantic
 
 ## Структура проекта
-
+```text
 alpha-fintech-trendwatcher/
 │
 ├── app.py                  # Главный файл веб-приложения Streamlit
@@ -31,15 +31,6 @@ alpha-fintech-trendwatcher/
     ├── config.py           # Конфигурация источников (RSS) и тестовые данные (Golden Dataset)
     ├── ml_core.py          # Логика дедупликации, гибридный скоринг и взаимодействие с LLM
     └── parser.py           # Модуль сбора и очистки данных из RSS-лент
-
-
-1. Клонируйте репозиторий
-  git clone <URL_репозитория>
-  cd alpha-fintech-trendwatcher
-2. Установите зависимости
-  pip install -r requirements.txt
-3. Запустите приложение
-  streamlit run app.py
 
 
 
