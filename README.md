@@ -22,7 +22,6 @@
 
 ## Структура проекта
 
-```text
 alpha-fintech-trendwatcher/
 │
 ├── app.py                  # Главный файл веб-приложения Streamlit
