@@ -58,17 +58,29 @@ def deduplicate_articles_semantic(articles: list, threshold: float) -> list:
 
 # --- ГИБРИДНЫЙ СКОРИНГ ---
 def calculate_hybrid_hotness(llm_score: int, text: str, sources: List[str]) -> int:
+    # Базовый вес от LLM
     score = llm_score * 0.4
+    
+    # НОВОЕ: Влияние количества дублей (N_clusters)
+    # Считаем количество дополнительных источников (дублей)
+    num_duplicates = max(0, len(sources) - 1)
+    # Начисляем по 0.3 балла за каждый дубль, но не более 1.5 баллов суммарно, 
+    # чтобы массовый репост не сломал общую логику оценки
+    score += min(num_duplicates * 0.3, 1.5)
+    
+    # Трастовость источника (I_source)
     high_trust = ['cbr.ru', 'vedomosti.ru', 'kommersant.ru']
     if any(any(ht in s for s in sources) for ht in high_trust):
         score += 1.5
     elif any('banki.ru' in s for s in sources):
         score += 1.0
         
+    # Триггерные слова (T_trigger)
     triggers = ['санкции', 'ставка', 'регулирование', 'цифровой рубль', 'запрет', 'ключевая']
     if any(t in text.lower() for t in triggers):
         score += 1.5
         
+    # Итоговая нормализация: скор не может быть меньше 1 и больше 5
     return min(5, max(1, int(round(score))))
 
 # --- LLM ИНФЕРЕНС (С FALLBACK) ---
